@@ -33,20 +33,52 @@ class Node<I> implements InterfaceNode<I>{
 	
 }
 
-public class LinkedList 
+public class LinkedList<I> 
 {   private static final Logger log=LogManager.getLogger(LinkedList.class);
+    public InterfaceNode<I> headPart=null;
+    public InterfaceNode<I> tailPart=null;
+    public int length=0;
+    
+    public int getLength() {
+    	return length;
+    }
+    
+    public void addToList(InterfaceNode<I> tempNode) {
+    	if(this.headPart==null) {
+    		this.headPart=tempNode;
+    	}
+    	if(this.tailPart==null) {
+    		this.tailPart=tempNode;
+    	}else {
+    		InterfaceNode<I> temp=this.headPart;
+    		this.headPart=tempNode;
+    		this.headPart.setNext(temp);
+    	}
+    	this.length++;
+    }
+    public void printList() {
+		InterfaceNode<I> tempNode=this.headPart;
+		
+		if(tempNode!=null) {
+			log.debug("This is the Linked List : ");
+			do {
+				System.out.print(tempNode.getKey()+"->");
+			}while((tempNode=tempNode.getNext())!=null);
+			
+			
+		}
+		
+	}
     public static void main( String[] args )
-    {
+    {  LinkedList<Integer> listOfValues=new LinkedList<Integer>();
        log.debug( "Linked List Creation" );
         Node<Integer> firstNode=new Node<Integer>(56);
+        listOfValues.addToList(firstNode);
 		Node<Integer> secondNode=new Node<Integer>(30);
-		Node<Integer> thirdNode=new Node<Integer>(70);
-		Node<Integer> tempnode=firstNode;
-		firstNode.setNext(secondNode);
-		secondNode.setNext(thirdNode);
-		log.debug("This is the Linked List : ");
-		do {
-			System.out.print(tempnode.getKey()+"->");
-		}while((tempnode=tempnode.getNext())!=null);
+		listOfValues.addToList(secondNode);
+	    Node<Integer> thirdNode=new Node<Integer>(70);
+	    listOfValues.addToList(thirdNode);
+				
+		
     }
 }

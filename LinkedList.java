@@ -69,16 +69,30 @@ public class LinkedList<I>
 		}
 		
 	}
+    public void appendingToList(InterfaceNode<I> tempNode) {
+		if (this.headPart == null) {
+			this.headPart = tempNode;
+		}
+		if (this.tailPart == null) {
+			this.tailPart = tempNode;
+		} else {
+			this.tailPart.setNext(tempNode);
+			this.tailPart = this.tailPart.getNext();
+		}
+		this.length++;
+	}
     public static void main( String[] args )
     {  LinkedList<Integer> listOfValues=new LinkedList<Integer>();
-       log.debug( "Linked List Creation" );
+        log.debug( "Linked List Creation" );
+        Node<Integer> thirdNode=new Node<Integer>(70);
+        Node<Integer> secondNode=new Node<Integer>(30);
         Node<Integer> firstNode=new Node<Integer>(56);
-        listOfValues.addToList(firstNode);
-		Node<Integer> secondNode=new Node<Integer>(30);
-		listOfValues.addToList(secondNode);
-	    Node<Integer> thirdNode=new Node<Integer>(70);
-	    listOfValues.addToList(thirdNode);
-				
+       
+		
+		listOfValues.appendingToList(firstNode);
+		listOfValues.appendingToList(secondNode);
+		listOfValues.appendingToList(thirdNode);
+		listOfValues.printList();		
 		
     }
 }

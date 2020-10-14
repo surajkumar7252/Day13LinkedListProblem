@@ -54,7 +54,7 @@ public class LinkedList<I>
     		this.headPart=tempNode;
     		this.headPart.setNext(temp);
     	}
-    	this.length++;
+    	
     }
     public void printList() {
 		InterfaceNode<I> tempNode=this.headPart;
@@ -79,7 +79,7 @@ public class LinkedList<I>
 			this.tailPart.setNext(tempNode);
 			this.tailPart = this.tailPart.getNext();
 		}
-		this.length++;
+		
 	}
     public static void main( String[] args )
     {  LinkedList<Integer> listOfValues=new LinkedList<Integer>();

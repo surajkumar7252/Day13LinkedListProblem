@@ -83,6 +83,11 @@ public class LinkedList<I>
 		node1.getNext().setNext(tempNode);
 		
 	}
+    public InterfaceNode<I> pop() {
+    	InterfaceNode<I> tempNode = this.headPart;
+		this.headPart = this.headPart.getNext();
+		return tempNode;
+	}
     public static void main( String[] args )
     {  LinkedList<Integer> listOfValues=new LinkedList<Integer>();
         log.debug( "Linked List Creation" );
@@ -92,8 +97,12 @@ public class LinkedList<I>
         listOfValues.appendingToList(firstNode);
         listOfValues.appendingToList(thirdNode);
 		listOfValues. insertionInBetween(firstNode,secondNode);
-		
-		listOfValues.printingList();		
+		log.debug("Original Linked List");
+		listOfValues.printingList();
+		listOfValues.pop();
+		log.debug("\n");
+		log.debug("Linked List after popping the first element");
+		listOfValues.printingList();
 		
     }
 }

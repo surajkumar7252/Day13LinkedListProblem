@@ -1,5 +1,7 @@
 package day13linkedlist.day13linkedlistproblem;
 
+import java.util.Scanner;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -35,6 +37,7 @@ class Node<I> implements InterfaceNode<I>{
 
 public class LinkedList<I> 
 {   private static final Logger log=LogManager.getLogger(LinkedList.class);
+    static Scanner inputFeed=new Scanner(System.in);
     public InterfaceNode<I> headPart=null;
     public InterfaceNode<I> tailPart=null;
   
@@ -88,8 +91,18 @@ public class LinkedList<I>
 		this.headPart = this.headPart.getNext();
 		return tempNode;
 	}
+    public InterfaceNode<I> popLast() {
+    	InterfaceNode<I> tempNode = this.headPart;
+	    while(!tempNode.getNext().equals(this.tailPart)) 
+		tempNode = tempNode.getNext();
+	    this.tailPart = tempNode;
+	    tempNode = tempNode.getNext();
+	    this.tailPart.setNext(null);
+	    return tempNode;
+	}
     public static void main( String[] args )
     {  LinkedList<Integer> listOfValues=new LinkedList<Integer>();
+        Integer choice;
         log.debug( "Linked List Creation" );
         Node<Integer> thirdNode=new Node<Integer>(70);
         Node<Integer> secondNode=new Node<Integer>(30);
@@ -97,12 +110,28 @@ public class LinkedList<I>
         listOfValues.appendingToList(firstNode);
         listOfValues.appendingToList(thirdNode);
 		listOfValues. insertionInBetween(firstNode,secondNode);
-		log.debug("Original Linked List");
-		listOfValues.printingList();
-		listOfValues.pop();
-		log.debug("\n");
-		log.debug("Linked List after popping the first element");
-		listOfValues.printingList();
+		log.debug("Which element do you wanna pop?: ");
+		log.debug("1.First");
+		log.debug("2.Last");
+		choice = inputFeed.nextInt();
+		switch(choice) {
+		case 1: log.debug("Original Linked List");
+		        listOfValues.printingList();
+		        listOfValues.pop();
+		        log.debug("\n");
+		        log.debug("Linked List after popping the first element");
+		        listOfValues.printingList();
+		        break;
+		case 2: log.debug("Original Linked List");
+                listOfValues.printingList();
+                listOfValues.popLast();
+                log.debug("\n");
+                log.debug("Linked List after popping the Last element");
+                listOfValues.printingList();
+                 break;
+		}
+		
+		
 		
     }
 }

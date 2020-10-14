@@ -100,6 +100,16 @@ public class LinkedList<I>
 	    this.tailPart.setNext(null);
 	    return tempNode;
 	}
+    
+    public boolean searchingNode(I valueToBeSearched) {
+    	InterfaceNode<I> tempNode=this.headPart;
+		while(tempNode!=null) {
+			if(tempNode.getKey().equals(valueToBeSearched)) 
+				return true;
+			tempNode=tempNode.getNext();
+		}
+		return false;
+	}
     public static void main( String[] args )
     {  LinkedList<Integer> listOfValues=new LinkedList<Integer>();
         Integer choice;
@@ -110,9 +120,11 @@ public class LinkedList<I>
         listOfValues.appendingToList(firstNode);
         listOfValues.appendingToList(thirdNode);
 		listOfValues. insertionInBetween(firstNode,secondNode);
-		log.debug("Which element do you wanna pop?: ");
-		log.debug("1.First");
-		log.debug("2.Last");
+		log.debug("What do you wanna perform: ");
+		log.debug("1. popping the first element");
+		log.debug("2.popping the Last element");
+		log.debug("3.Searching node for an element");
+		
 		choice = inputFeed.nextInt();
 		switch(choice) {
 		case 1: log.debug("Original Linked List");
@@ -129,6 +141,10 @@ public class LinkedList<I>
                 log.debug("Linked List after popping the Last element");
                 listOfValues.printingList();
                  break;
+		case 3:    log.debug("enter the element to be searched: ");
+		           Integer Element=inputFeed.nextInt();
+                   log.debug("searched element found: "+listOfValues.searchingNode(Element));
+                   break;
 		}
 		
 		

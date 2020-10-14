@@ -117,9 +117,13 @@ public class LinkedList<I>
         Node<Integer> thirdNode=new Node<Integer>(70);
         Node<Integer> secondNode=new Node<Integer>(30);
         Node<Integer> firstNode=new Node<Integer>(56);
+        Node<Integer> fourthNode=new Node<Integer>(40);
         listOfValues.appendingToList(firstNode);
+        listOfValues.appendingToList(secondNode);
         listOfValues.appendingToList(thirdNode);
-		listOfValues. insertionInBetween(firstNode,secondNode);
+        
+		//listOfValues. insertionInBetween(firstNode,secondNode);
+		listOfValues. insertionInBetween(secondNode,fourthNode);
 		log.debug("What do you wanna perform: ");
 		log.debug("1. popping the first element");
 		log.debug("2.popping the Last element");

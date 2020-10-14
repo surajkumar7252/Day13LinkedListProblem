@@ -70,4 +70,54 @@ public class LinkedListTest
          inference = listOfValues.searchingNode(20);
  		 Assert.assertFalse(inference);
     }
+    @Test
+	public void deletedValueWhenSearched_shouldReturnFalse() {
+		LinkedList<Integer> listOfValues = new LinkedList<Integer>();
+		 boolean inference;
+		Node<Integer> thirdNode=new Node<Integer>(70);
+        Node<Integer> secondNode=new Node<Integer>(30);
+        Node<Integer> firstNode=new Node<Integer>(56);
+        Node<Integer> fourthNode=new Node<Integer>(40);
+		listOfValues.appendingToList(firstNode);
+        listOfValues.appendingToList(secondNode);
+        listOfValues.appendingToList(thirdNode);
+        listOfValues.insertionInBetween(secondNode, fourthNode);
+		System.out.println("Original list: ");
+		listOfValues.printingList();
+		Integer beforeDeletion=listOfValues.counter;
+		System.out.println("size before deletion: "+beforeDeletion);
+		listOfValues.deletingValue(40);
+		int afterDeletion=listOfValues.counter;
+		System.out.println("List after deletion: ");
+		listOfValues.printingList();
+		System.out.println("size after deletion: "+afterDeletion);
+		inference = listOfValues.searchingNode(40)||afterDeletion==beforeDeletion-1;
+	    Assert.assertFalse(inference);
+	}
+	
+	
+	
+	@Test
+	public void deletingValueWhenNotInList_sizeShouldRemainSame() {
+		LinkedList<Integer> listOfValues = new LinkedList<Integer>();
+		boolean inference;
+	        Node<Integer> thirdNode=new Node<Integer>(70);
+                Node<Integer> secondNode=new Node<Integer>(30);
+                Node<Integer> firstNode=new Node<Integer>(56);
+                Node<Integer> fourthNode=new Node<Integer>(40);
+		listOfValues.appendingToList(firstNode);
+                listOfValues.appendingToList(secondNode);
+                listOfValues.appendingToList(thirdNode);
+                listOfValues.insertionInBetween(secondNode, fourthNode);
+		System.out.println("Original list: ");
+		listOfValues.printingList();
+		Integer beforeDeletion=listOfValues.counter;
+		System.out.println("size before deletion: "+beforeDeletion);
+		listOfValues.deletingValue(40);
+		int afterDeletion=listOfValues.counter;
+		System.out.println("List after deletion: ");
+		listOfValues.printingList();
+		inference = afterDeletion==beforeDeletion;
+		Assert.assertTrue(inference);
+	}
 }

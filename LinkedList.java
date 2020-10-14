@@ -38,6 +38,7 @@ class Node<I> implements InterfaceNode<I>{
 public class LinkedList<I> 
 {   private static final Logger log=LogManager.getLogger(LinkedList.class);
     static Scanner inputFeed=new Scanner(System.in);
+    public static Integer counter=0;
     public InterfaceNode<I> headPart=null;
     public InterfaceNode<I> tailPart=null;
   
@@ -110,6 +111,31 @@ public class LinkedList<I>
 		}
 		return false;
 	}
+    
+
+    public InterfaceNode<I> deletingValue(I valueToBeDeleted) {
+    	
+    	InterfaceNode<I> temp = null;
+    	InterfaceNode<I> presentNode =this.headPart, previousNode = null; 
+		if (presentNode != null && presentNode.getKey() == valueToBeDeleted) { 
+			this.headPart = presentNode.getNext();
+			counter++;
+			temp = presentNode;
+		} 
+		while (presentNode != null && presentNode.getKey() != valueToBeDeleted) { 
+			previousNode = presentNode; 
+			presentNode = presentNode.getNext(); 
+			
+		}  
+		if (presentNode != null) { 
+			previousNode.setNext(presentNode.getNext());  
+			temp = presentNode;
+		} 
+		return temp;
+	} 
+    
+  
+    
     public static void main( String[] args )
     {  LinkedList<Integer> listOfValues=new LinkedList<Integer>();
         Integer choice;
@@ -128,6 +154,7 @@ public class LinkedList<I>
 		log.debug("1. popping the first element");
 		log.debug("2.popping the Last element");
 		log.debug("3.Searching node for an element");
+		log.debug("4.Deleting  element (40)");
 		
 		choice = inputFeed.nextInt();
 		switch(choice) {
@@ -149,6 +176,14 @@ public class LinkedList<I>
 		           Integer Element=inputFeed.nextInt();
                    log.debug("searched element found: "+listOfValues.searchingNode(Element));
                    break;
+		case 4:    log.debug("enter the element to be Deleted: ");
+                   Integer delElement=inputFeed.nextInt();
+                   log.debug("searched element found: "+listOfValues.deletingValue(delElement));
+                   log.debug("Linked List after Deleting the element");
+                   listOfValues.printingList();
+                   log.debug("Number of  elements now : "+counter);
+                   break;
+                   
 		}
 		
 		

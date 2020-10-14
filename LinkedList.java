@@ -37,11 +37,7 @@ public class LinkedList<I>
 {   private static final Logger log=LogManager.getLogger(LinkedList.class);
     public InterfaceNode<I> headPart=null;
     public InterfaceNode<I> tailPart=null;
-    public int length=0;
-    
-    public int getLength() {
-    	return length;
-    }
+  
     
     public void addToList(InterfaceNode<I> tempNode) {
     	if(this.headPart==null) {
@@ -54,9 +50,9 @@ public class LinkedList<I>
     		this.headPart=tempNode;
     		this.headPart.setNext(temp);
     	}
-    	this.length++;
+    	
     }
-    public void printList() {
+    public void printingList() {
 		InterfaceNode<I> tempNode=this.headPart;
 		
 		if(tempNode!=null) {
@@ -79,7 +75,13 @@ public class LinkedList<I>
 			this.tailPart.setNext(tempNode);
 			this.tailPart = this.tailPart.getNext();
 		}
-		this.length++;
+		
+	}
+    public void insertionInBetween(InterfaceNode<I> node1, InterfaceNode<I> node2) {
+    	InterfaceNode<I> tempNode=node1.getNext();
+		node1.setNext(node2);
+		node1.getNext().setNext(tempNode);
+		
 	}
     public static void main( String[] args )
     {  LinkedList<Integer> listOfValues=new LinkedList<Integer>();
@@ -87,12 +89,11 @@ public class LinkedList<I>
         Node<Integer> thirdNode=new Node<Integer>(70);
         Node<Integer> secondNode=new Node<Integer>(30);
         Node<Integer> firstNode=new Node<Integer>(56);
-       
+        listOfValues.appendingToList(firstNode);
+        listOfValues.appendingToList(thirdNode);
+		listOfValues. insertionInBetween(firstNode,secondNode);
 		
-		listOfValues.appendingToList(firstNode);
-		listOfValues.appendingToList(secondNode);
-		listOfValues.appendingToList(thirdNode);
-		listOfValues.printList();		
+		listOfValues.printingList();		
 		
     }
 }
